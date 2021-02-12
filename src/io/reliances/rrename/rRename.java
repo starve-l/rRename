@@ -85,6 +85,7 @@ public class rRename extends JavaPlugin {
             default:
                 if (player.getInventory().getItemInMainHand().getType().isAir()) {
                     player.sendMessage(prefix + colorError + "You need to hold an item/block to rename!");
+                    break;
                 }
                 if (config.getBoolean("economy.enabled")) {
                     if (!player.hasPermission("rrename.bypass") || !player.isOp()) {
