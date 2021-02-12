@@ -88,7 +88,7 @@ public class rRename extends JavaPlugin {
                     break;
                 }
                 if (config.getBoolean("economy.enabled")) {
-                    if (    player.hasPermission("rrename.bypass") || !player.isOp()) {
+                    if (!player.isOp() || !player.hasPermission("rrename.bypass")) {
                         double bal = econ.getBalance(player);
                         if (bal < config.getInt("economy.price")) {
                             player.sendMessage(prefix + colorError + "You have insufficient funds! You need $" + config.getInt("economy.price") + " to rename items.");
