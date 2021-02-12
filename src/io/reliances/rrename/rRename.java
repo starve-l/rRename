@@ -88,14 +88,8 @@ public class rRename extends JavaPlugin {
                     break;
                 }
                 if (config.getBoolean("economy.enabled")) {
-                    if (!player.isOp() || !player.hasPermission("rrename.bypass")) {
-                        double bal = econ.getBalance(player);
-                        if (bal < config.getInt("economy.price")) {
-                            player.sendMessage(prefix + colorError + "You have insufficient funds! You need $" + config.getInt("economy.price") + " to rename items.");
-                            break;
-                        } else {
-                            econ.withdrawPlayer(player, config.getInt("economy.price"));
-                        }
+                    if (!removeMoney(player)) {
+                        return true;
                     }
                 }
                 String[] reSplitArgs;
@@ -140,6 +134,22 @@ public class rRename extends JavaPlugin {
         }
         Collections.sort(completions);
         return completions;
+    }
+
+    public boolean removeMoney(Player player) {
+        String prefix = ChatColor.GRAY + "[" + ChatColor.of("#" + config.getString("appearance.prefix-color")) + config.getString("appearance.prefix") + ChatColor.GRAY + "] ";
+        ChatColor colorError = ChatColor.of("#" + config.getString("appearance.color-error"));
+        if (player.isOp() || player.hasPermission("rrename.bypass")) {
+            return true;
+        }
+        double bal = econ.getBalance(player);
+        if (bal < config.getInt("economy.price")) {
+            player.sendMessage(prefix + colorError + "You have insufficient funds! You need $" + config.getInt("economy.price") + " to rename items.");
+            return false;
+        } else {
+            econ.withdrawPlayer(player, config.getInt("economy.price"));
+            return true;
+        }
     }
 
 }
