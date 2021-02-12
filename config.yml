@@ -1,0 +1,10 @@
+version: 1.0.0
+appearance:
+  prefix: rRename
+  prefix-color: 771177
+  color-normal: FB336D
+  color-error: 7a0000
+economy:
+  #When enabled, rRename removes a specific amount of money from the players balance when renaming an item.
+  enabled: false
+  price: 50

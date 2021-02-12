@@ -1,0 +1,16 @@
+name: rRename
+main: io.reliances.rrename.rRename
+version: 1.0.0
+api-version: 1.16
+commands:
+  rrename:
+    description: main cmd
+  rr:
+    description: short ver
+permissions:
+  rrename.rename:
+    description: rename command
+  rrename.bypass:
+    description: bypasses the rename price
+  rrename.reload:
+    description: permission to reload the plugin config
